@@ -1,3 +1,5 @@
+import * as actionTypes from "../actionTypes";
+
 const initialState = {
   tickets: [
     {
@@ -33,6 +35,30 @@ const initialState = {
   ]
 };
 
+const toggleVote = (state, action) => {
+  console.log("toggleVote");
+  const { ticketId, userId } = action.payload;
+  const tickets = state.tickets.slice();
+  const ticketIndex = tickets.findIndex(t => t.id === ticketId);
+  const ticket = Object.assign({}, tickets[ticketIndex]);
+  const voters = ticket.voters;
+  const voterIndex = voters.findIndex(v => v === userId);
+  if (voterIndex < 0) {
+    voters.push(userId);
+  } else {
+    voters.splice(voterIndex, 1);
+  }
+
+  tickets[ticketIndex] = ticket;
+
+  console.log("voters :", voters);
+
+  return {
+    ...state,
+    tickets
+  };
+};
+
 const editCard = (state, action) => {
   const { id, attribute, value } = action.payload;
   const tickets = state.tickets.slice();
@@ -43,8 +69,8 @@ const editCard = (state, action) => {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case "foo":
-      return { ...state };
+    case actionTypes.TOGGLE_VOTE:
+      return toggleVote(state, action);
     default:
       return state;
   }

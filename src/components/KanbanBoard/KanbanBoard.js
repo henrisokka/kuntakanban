@@ -1,11 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
+import { toggleVote } from "../../store/kanbanReducer/actions";
 
 import Column from "./Column";
 
 function KanbanBoard(props) {
   return (
-    <div style={{ display: "flex", flexDirection: "row" }}>
+    <div className="KanbanBoard">
       <Column
         title="Aloitteet"
         tickets={props.tickets.filter(t => t.column === 0)}
@@ -32,7 +33,7 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = state => {
+const mapDispatchToProps = dispatch => {
   return {};
 };
 
