@@ -95,5 +95,8 @@ function newTicket(id, title, description, owner, tags) {
 }
 
 const addTag = (tags, newTag) => {
+  if (newTag.length === 0) {
+    return tags;
+  }
   return [...tags, newTag];
 };

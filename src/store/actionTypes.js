@@ -1,5 +1,6 @@
 // ui related
 export const SET_VIEW = "SET_VIEW";
+export const SWITCH_TAG = "SWITCH_TAG";
 
 // canban related:
 export const NEW_TICKET = "NEW_TICKET";

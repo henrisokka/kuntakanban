@@ -10,6 +10,7 @@ const initialState = {
       subscribers: ["email@foo.boo", "2email@fo.fo"],
       column: 0,
       voters: ["sum1"],
+      tags: [],
       widgets: [
         {
           type: "comment",
@@ -25,6 +26,7 @@ const initialState = {
       subscribers: ["email@foo.boo", "2email@fo.fo"],
       column: 1,
       voters: ["sum1"],
+      tags: ["sote"],
       widgets: [{}]
     },
     {
@@ -35,10 +37,11 @@ const initialState = {
       subscribers: ["email@foo.boo", "2email@fo.fo"],
       column: 0,
       voters: ["sum1", "sum2"],
+      tags: [],
       widgets: [{}]
     }
   ],
-  tags: []
+  tags: ["sote", "kadut", "digitalisaatio"]
 };
 
 const toggleVote = (state, action) => {
