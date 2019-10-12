@@ -107,6 +107,20 @@ const assignTicket = (state, action) => {
   };
 };
 
+const comment = (state, action) => {
+  const { ticketId, userId, text } = action.payload;
+  const tickets = state.tickets.slice();
+  const index = tickets.findIndex(t => t.id === ticketId);
+  const ticket = Object.assign({}, tickets[index]);
+  ticket.comments.push({ user: userId, comment: text });
+  tickets[index] = ticket;
+
+  return {
+    ...state,
+    tickets
+  };
+};
+
 const edit = (state, action) => {
   const { id, attribute, value } = action.payload;
   const tickets = state.tickets.slice();
@@ -123,6 +137,8 @@ const reducer = (state = initialState, action) => {
       return newTicket(state, action);
     case actionTypes.ASSIGN_TICKET:
       return assignTicket(state, action);
+    case actionTypes.COMMENT:
+      return comment(state, action);
     default:
       return state;
   }
