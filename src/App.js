@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { setView } from "./store/uiReducer/actions";
+
+import { connect } from "react-redux";
+
+import FrontScreen from "./containers/FrontScreen";
+
+function App(props) {
+  console.log(props);
+  const { activeView } = props;
+  if (activeView === "front") {
+    return <FrontScreen setView={props.setView} />;
+  }
+
+  return <div className="App">ffoooo</div>;
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    activeView: state.uiReducer.activeView
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setView: view => dispatch(setView(view))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
