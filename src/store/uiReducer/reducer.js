@@ -1,7 +1,8 @@
 import * as actionTypes from "../actionTypes";
 
 const initialState = {
-  activeView: "front"
+  activeView: "front",
+  userRole: ""
 };
 
 const setView = (state, action) => {

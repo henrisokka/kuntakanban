@@ -6,13 +6,15 @@ import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 
 import uiReducer from "./store/uiReducer/reducer";
+import kanbanReducer from "./store/kanbanReducer/reducer";
 
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
 const rootReducer = combineReducers({
-  uiReducer: uiReducer
+  uiReducer,
+  kanbanReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
