@@ -6,11 +6,16 @@ const initialState = {
       id: "0",
       title: "Hyvä avaus",
       description: "Voitaisko tehdä näin joskus pliis",
-      owner: "sumUserId8",
+      owner: null,
       subscribers: ["email@foo.boo", "2email@fo.fo"],
       column: 0,
       voters: ["sum1"],
-      widgets: [{}]
+      widgets: [
+        {
+          type: "comment",
+          content: "Hyvä ajatus, voisi toteuttaa mutta ei kuulu omaan alaani."
+        }
+      ]
     },
     {
       id: "1",
@@ -26,9 +31,9 @@ const initialState = {
       id: "2",
       title: "Suojatie lukiolle",
       description: "Ois hyvä juttu mun mielestä kiitos",
-      owner: "sumUserId8",
+      owner: null,
       subscribers: ["email@foo.boo", "2email@fo.fo"],
-      column: 1,
+      column: 0,
       voters: ["sum1", "sum2"],
       widgets: [{}]
     }
@@ -69,6 +74,27 @@ const newTicket = (state, action) => {
   return { ...state, tickets };
 };
 
+const assignTicket = (state, action) => {
+  const { ticketId, userId } = action.payload;
+  const tickets = state.tickets.slice();
+  const ticketIndex = tickets.findIndex(t => t.id === ticketId);
+  console.log("ticket index", ticketIndex);
+
+  if (ticketIndex > -1) {
+    console.log("ticket before", tickets[ticketIndex]);
+    const ticket = Object.assign({}, tickets[ticketIndex]);
+    console.log(ticket);
+    console.log("ticket in if", ticket);
+    ticket.owner = userId;
+    console.log(userId);
+    tickets[ticketIndex] = ticket;
+  }
+  return {
+    ...state,
+    tickets
+  };
+};
+
 const edit = (state, action) => {
   const { id, attribute, value } = action.payload;
   const tickets = state.tickets.slice();
@@ -83,6 +109,8 @@ const reducer = (state = initialState, action) => {
       return toggleVote(state, action);
     case actionTypes.NEW_TICKET:
       return newTicket(state, action);
+    case actionTypes.ASSIGN_TICKET:
+      return assignTicket(state, action);
     default:
       return state;
   }

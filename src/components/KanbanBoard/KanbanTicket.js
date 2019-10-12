@@ -4,7 +4,7 @@ import { toggleVote } from "../../store/kanbanReducer/actions";
 
 import { connect } from "react-redux";
 
-import WidgetArea from "./WidgetArea";
+import AdminView from "./AdminView";
 
 function KanbanTicket(props) {
   console.log("KanbanTicket: ", props);
@@ -47,7 +47,8 @@ function KanbanTicket(props) {
             <Header>Kuvaus</Header>
             <p>{props.ticket.description}</p>
           </Modal.Description>
-          <WidgetArea />
+          {props.isAdmin ? <AdminView ticket={props.ticket} /> : null}
+          <div>Prosessin omistaja: {props.ticket.owner || "Ei omistajaa"}</div>
         </Modal.Content>
       </Modal>
     </div>
@@ -55,7 +56,10 @@ function KanbanTicket(props) {
 }
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    isAdmin: state.uiReducer.userRole === "admin",
+    userId: state.uiReducer.userId
+  };
 };
 
 const mapDispatchToProps = dispatch => {

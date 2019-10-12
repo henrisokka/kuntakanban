@@ -50,6 +50,9 @@ export default function TicketCreator(props) {
         >
           Luo aloite
         </Button>
+        <Button secondary onClick={props.close}>
+          Peruuta
+        </Button>
       </div>
     </div>
   );

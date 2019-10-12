@@ -9,6 +9,16 @@ export const newTicket = ticket => {
   };
 };
 
+export const assignTicket = (ticketId, userId) => {
+  return {
+    type: actionTypes.ASSIGN_TICKET,
+    payload: {
+      ticketId,
+      userId
+    }
+  };
+};
+
 export const toggleVote = (ticketId, userId) => {
   return {
     type: actionTypes.TOGGLE_VOTE,

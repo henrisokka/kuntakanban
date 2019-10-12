@@ -24,7 +24,7 @@ function App(props) {
 
   return (
     <div className="App">
-      <div className="Title">Aloitteista teoiksi</div>
+      <div className="Title">Meidän Mäntsälä</div>
       <div className="TopBar">
         <div className="CreateButton" onClick={() => setModal(true)}>
           TEE UUSI ALOITE

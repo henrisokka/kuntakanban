@@ -2,7 +2,8 @@ import * as actionTypes from "../actionTypes";
 
 const initialState = {
   activeView: "front",
-  userRole: "admin"
+  userRole: "admin",
+  userId: "kunta_paattaja_89"
 };
 
 const setView = (state, action) => {
