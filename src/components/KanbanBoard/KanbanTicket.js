@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Modal, Header } from "semantic-ui-react";
+import { Button, Modal, Header, Icon } from "semantic-ui-react";
 import { toggleVote } from "../../store/kanbanReducer/actions";
 
 import { connect } from "react-redux";
@@ -17,8 +17,11 @@ function KanbanTicket(props) {
         marginTop: "30px"
       }}
     >
-      <div>{props.ticket.title || "Ei otsikkoa"}</div>
-      <div>Votes: {props.ticket.voters.length}</div>
+      <div>
+        {props.ticket.title || "Ei otsikkoa"}{" "}
+        <div>{props.ticket.voters.length}</div>
+      </div>
+
       <Button
         onClick={() => props.toggleVote(props.ticket.id, "testihenkilo1")}
       >
@@ -34,7 +37,7 @@ function KanbanTicket(props) {
             <Button
               onClick={() => props.toggleVote(props.ticket.id, "testihenkilo1")}
             >
-              Vote
+              <Icon disabled name="thumbs up"></Icon>
             </Button>
           </span>
         </Modal.Header>

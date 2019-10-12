@@ -59,7 +59,17 @@ const toggleVote = (state, action) => {
   };
 };
 
-const editCard = (state, action) => {
+const newTicket = (state, action) => {
+  const { ticket } = action.payload;
+  ticket.voters.push(ticket.owner);
+  ticket.id = state.tickets.length + 1 + "id";
+
+  const tickets = state.tickets.slice();
+  tickets.push(ticket);
+  return { ...state, tickets };
+};
+
+const edit = (state, action) => {
   const { id, attribute, value } = action.payload;
   const tickets = state.tickets.slice();
   const ticket = tickets.find(t => t.id === id);
@@ -71,6 +81,8 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.TOGGLE_VOTE:
       return toggleVote(state, action);
+    case actionTypes.NEW_TICKET:
+      return newTicket(state, action);
     default:
       return state;
   }

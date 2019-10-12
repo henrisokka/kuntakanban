@@ -1,16 +1,17 @@
 import React, { useState } from "react";
-import { Input } from "semantic-ui-react";
-import { Button } from "semantic-ui-react";
+import { Input, TextArea, Form, Button } from "semantic-ui-react";
 
-export default function TicketCreator() {
+export default function TicketCreator(props) {
   const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("no title");
+  const [description, setDescription] = useState("");
   const [email, setEmail] = useState("");
+  const [ticketCount, setCount] = useState(0);
 
   return (
-    <div>
-      <h1>Täällä luodaan tikettejä</h1>
-      <div>
+    <div className="TicketCreator">
+      <h3 className="Title">Uusi aloite</h3>
+      <div className="Input-Container">
+        <h5>Otsikko</h5>
         <Input
           type="text"
           value={title}
@@ -18,30 +19,49 @@ export default function TicketCreator() {
           placeholder="Otsikko"
         />
       </div>
-      <div>
-        <Input
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-          type="text"
-          placeholder="Yhteystiedot"
-        />
+      <div className="Input-Container">
+        <h5>Kuvaus</h5>
+        <Form>
+          <TextArea
+            rows={10}
+            placeholder="Ongelman kuvaus"
+            value={description}
+            onChange={e => setDescription(e.target.value)}
+          />
+        </Form>
       </div>
-      <div>
-        <textarea
-          placeholder="Ongelman kuvaus"
-          value={description}
-          onChange={e => setDescription(e.target.value)}
-        />
+      <div className="Input-Container">
+        <Button>Lisää kuva</Button>
+        <Button>Liitä sijainti</Button>
       </div>
-      <Button primary>Luo aloite</Button>
+      <div className="Input-Container">
+        <Button
+          primary
+          onClick={() => {
+            if (title.length < 1 || description.length < 1) {
+              return;
+            }
+            setCount(ticketCount + 1);
+            props.createTicket(
+              newTicket("id" + ticketCount, title, description, "testihenkilo1")
+            );
+            props.close();
+          }}
+        >
+          Luo aloite
+        </Button>
+      </div>
     </div>
   );
 }
 
-const createTicket = (name, description, tags) => {
+function newTicket(id, title, description, owner) {
   return {
-    name,
+    id,
+    title,
     description,
-    tags
+    owner,
+    column: 0,
+    voters: []
   };
-};
+}

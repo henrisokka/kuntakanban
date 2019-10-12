@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
+import { Modal } from "semantic-ui-react";
 import { setView } from "./store/uiReducer/actions";
 import { connect } from "react-redux";
 import KanbanBoard from "./components/KanbanBoard/KanbanBoard";
 import TicketCreator from "./containers/TicketCreator";
+import { newTicket } from "./store/kanbanReducer/actions";
 
 import "./App.css";
 
 function App(props) {
+  const [showModal, setModal] = useState(false);
+
   console.log(props);
   const { activeView } = props;
 
@@ -22,7 +26,16 @@ function App(props) {
     <div className="App">
       <div className="Title">Aloitteista teoiksi</div>
       <div className="TopBar">
-        <div className="CreateButton">TEE UUSI ALOITE</div>
+        <div className="CreateButton" onClick={() => setModal(true)}>
+          TEE UUSI ALOITE
+        </div>
+        <Modal open={showModal}>
+          <TicketCreator
+            close={() => setModal(false)}
+            createTicket={props.createTicket}
+          />
+        </Modal>
+
         <div className="SearchTool">Haku palkki</div>
         <div className="InfoButton">Info</div>
       </div>
@@ -39,7 +52,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setView: view => dispatch(setView(view))
+    setView: view => dispatch(setView(view)),
+    createTicket: card => dispatch(newTicket(card))
   };
 };
 
