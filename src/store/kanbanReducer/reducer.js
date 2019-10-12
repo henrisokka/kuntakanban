@@ -8,13 +8,14 @@ const initialState = {
       description: "Voitaisko tehdä näin joskus pliis",
       owner: null,
       subscribers: ["email@foo.boo", "2email@fo.fo"],
-      column: 0,
+      column: 3,
       voters: ["sum1"],
       tags: [],
-      widgets: [
+      comments: [
         {
-          type: "comment",
-          content: "Hyvä ajatus, voisi toteuttaa mutta ei kuulu omaan alaani."
+          user: "Risto Kuosmanen",
+          comment:
+            "Tämä ei nyt oikein toimi. Syö budjettia liikaa ja sitä rataa."
         }
       ]
     },
@@ -22,12 +23,12 @@ const initialState = {
       id: "1",
       title: "Huono avaus",
       description: "Mutta se on nyt vastaanotettu eikö",
-      owner: "sumUserId8",
+      owner: "Risto Kuosmanen",
       subscribers: ["email@foo.boo", "2email@fo.fo"],
       column: 1,
       voters: ["sum1"],
       tags: ["sote"],
-      widgets: [{}]
+      comments: []
     },
     {
       id: "2",
@@ -35,10 +36,15 @@ const initialState = {
       description: "Ois hyvä juttu mun mielestä kiitos",
       owner: null,
       subscribers: ["email@foo.boo", "2email@fo.fo"],
-      column: 0,
+      column: 1,
       voters: ["sum1", "sum2"],
       tags: [],
-      widgets: [{}]
+      comments: [
+        {
+          user: "Risto Kuosmanen",
+          comment: "Oikein hyvä idea. Tekee kulkemisesta turvallisempaa."
+        }
+      ]
     }
   ],
   tags: ["sote", "kadut", "digitalisaatio"]
@@ -77,13 +83,10 @@ const newTicket = (state, action) => {
   const tags = state.tags.slice();
 
   for (let tag of ticket.tags) {
-    console.log("tag: ", tag);
     if (!tags.includes(tag)) {
       tags.push(tag);
     }
   }
-
-  console.log("tags: ", tags);
 
   return { ...state, tickets, tags };
 };

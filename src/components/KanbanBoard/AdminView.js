@@ -7,19 +7,12 @@ import { assignTicket } from "../../store/kanbanReducer/actions";
 function AdminView(props) {
   return (
     <div>
-      {!props.ticket.owner ? (
-        <Button
-          onClick={() => props.assignTicket(props.ticket.id, props.userId)}
-        >
-          Ota vastuullesi
-        </Button>
-      ) : (
-        <div />
-      )}
-      <h4>Vastaa</h4>
+      <h5>Vastaa</h5>
       <Form>
         <TextArea />
-        <Button>Kommentoi</Button>
+        <Button icon="edit" primary>
+          Kommentoi
+        </Button>
       </Form>
     </div>
   );

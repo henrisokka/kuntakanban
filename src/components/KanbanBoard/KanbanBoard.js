@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { toggleVote } from "../../store/kanbanReducer/actions";
 
 import Column from "./Column";
 
