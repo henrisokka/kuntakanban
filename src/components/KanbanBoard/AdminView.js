@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, TextArea, Form } from "semantic-ui-react";
+import { Button, TextArea, Form, Segment } from "semantic-ui-react";
 import { connect } from "react-redux";
 
 import { assignTicket } from "../../store/kanbanReducer/actions";
@@ -7,14 +7,14 @@ import { assignTicket } from "../../store/kanbanReducer/actions";
 function AdminView(props) {
   return (
     <div>
-      {props.ticket.owner !== props.userId ? (
+      {!props.ticket.owner ? (
         <Button
           onClick={() => props.assignTicket(props.ticket.id, props.userId)}
         >
           Ota vastuullesi
         </Button>
       ) : (
-        <div>Sinun vastuulla tämä nyt. Älä mokaa!</div>
+        <div />
       )}
       <h4>Vastaa</h4>
       <Form>

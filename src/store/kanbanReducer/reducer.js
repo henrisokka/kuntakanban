@@ -37,7 +37,8 @@ const initialState = {
       voters: ["sum1", "sum2"],
       widgets: [{}]
     }
-  ]
+  ],
+  tags: []
 };
 
 const toggleVote = (state, action) => {
@@ -56,8 +57,6 @@ const toggleVote = (state, action) => {
 
   tickets[ticketIndex] = ticket;
 
-  console.log("voters :", voters);
-
   return {
     ...state,
     tickets
@@ -71,22 +70,29 @@ const newTicket = (state, action) => {
 
   const tickets = state.tickets.slice();
   tickets.push(ticket);
-  return { ...state, tickets };
+
+  const tags = state.tags.slice();
+
+  for (let tag of ticket.tags) {
+    console.log("tag: ", tag);
+    if (!tags.includes(tag)) {
+      tags.push(tag);
+    }
+  }
+
+  console.log("tags: ", tags);
+
+  return { ...state, tickets, tags };
 };
 
 const assignTicket = (state, action) => {
   const { ticketId, userId } = action.payload;
   const tickets = state.tickets.slice();
   const ticketIndex = tickets.findIndex(t => t.id === ticketId);
-  console.log("ticket index", ticketIndex);
 
   if (ticketIndex > -1) {
-    console.log("ticket before", tickets[ticketIndex]);
     const ticket = Object.assign({}, tickets[ticketIndex]);
-    console.log(ticket);
-    console.log("ticket in if", ticket);
     ticket.owner = userId;
-    console.log(userId);
     tickets[ticketIndex] = ticket;
   }
   return {

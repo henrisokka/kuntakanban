@@ -3,6 +3,7 @@ import { Modal } from "semantic-ui-react";
 import { setView } from "./store/uiReducer/actions";
 import { connect } from "react-redux";
 import KanbanBoard from "./components/KanbanBoard/KanbanBoard";
+import SearchTool from "./components/SearchTool";
 import TicketCreator from "./containers/TicketCreator";
 import { newTicket } from "./store/kanbanReducer/actions";
 
@@ -36,7 +37,7 @@ function App(props) {
           />
         </Modal>
 
-        <div className="SearchTool">Haku palkki</div>
+        <SearchTool tags={props.tags} />
         <div className="InfoButton">Info</div>
       </div>
       <KanbanBoard />
@@ -46,7 +47,8 @@ function App(props) {
 
 const mapStateToProps = state => {
   return {
-    activeView: state.uiReducer.activeView
+    activeView: state.uiReducer.activeView,
+    tags: state.kanbanReducer.tags
   };
 };
 

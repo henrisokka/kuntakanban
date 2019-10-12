@@ -1,18 +1,17 @@
 .App {
   display: flex;
-  background-color: #FCFCFC;
+  background-color: #fcfcfc;
   width: 100%;
   height: 100%;
-  background-image: url (/assets/ruukut.png);
+  background-image: url (/ assets/ruukut.png);
   flex-direction: column;
 }
 
 h4 {
   color: #black;
-text-align: center;
-padding-bottom: 20px;
+  text-align: center;
+  padding-bottom: 20px;
 }
-
 
 .App .Title {
   position: relative;
@@ -41,7 +40,6 @@ padding-bottom: 20px;
 .SearchTool {
   margin-left: 10vw;
   width: 50vw;
-  background-color: red;
 }
 
 .InfoButton {

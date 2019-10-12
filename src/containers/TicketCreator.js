@@ -4,8 +4,9 @@ import { Input, TextArea, Form, Button } from "semantic-ui-react";
 export default function TicketCreator(props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [email, setEmail] = useState("");
   const [ticketCount, setCount] = useState(0);
+  const [tags, updateTags] = useState([]);
+  const [tagInputContent, updateContent] = useState("");
 
   return (
     <div className="TicketCreator">
@@ -34,6 +35,23 @@ export default function TicketCreator(props) {
         <Button>Lisää kuva</Button>
         <Button>Liitä sijainti</Button>
       </div>
+      <Form>
+        <Input
+          tagContent={tagInputContent}
+          onChange={e => updateContent(e.target.value)}
+          placeholder="Tag"
+        />
+        <Button
+          onClick={() => {
+            updateTags(addTag(tags, tagInputContent));
+          }}
+        >
+          Lisää
+        </Button>
+      </Form>
+      {tags.map(t => (
+        <span style={{ marginLeft: "5px" }}>{t}</span>
+      ))}
       <div className="Input-Container">
         <Button
           primary
@@ -43,7 +61,13 @@ export default function TicketCreator(props) {
             }
             setCount(ticketCount + 1);
             props.createTicket(
-              newTicket("id" + ticketCount, title, description, "testihenkilo1")
+              newTicket(
+                "id" + ticketCount,
+                title,
+                description,
+                "testihenkilo1",
+                tags
+              )
             );
             props.close();
           }}
@@ -58,13 +82,18 @@ export default function TicketCreator(props) {
   );
 }
 
-function newTicket(id, title, description, owner) {
+function newTicket(id, title, description, owner, tags) {
   return {
     id,
     title,
     description,
-    owner,
+    owner: null,
     column: 0,
-    voters: []
+    voters: [],
+    tags
   };
 }
+
+const addTag = (tags, newTag) => {
+  return [...tags, newTag];
+};

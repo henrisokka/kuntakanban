@@ -9,7 +9,7 @@ function KanbanBoard(props) {
     <div className="KanbanBoard">
       <Column
         title="Aloitteet"
-        tickets={props.tickets.filter(t => t.column === 0)}
+        tickets={props.tickets.filter(t => t.column === 0).reverse()}
       />
       <Column
         title="Valmistelussa"

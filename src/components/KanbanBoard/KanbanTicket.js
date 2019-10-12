@@ -45,6 +45,7 @@ function KanbanTicket(props) {
         <Modal.Content>
           <Modal.Description>
             <Header>Kuvaus</Header>
+            <div>Tagit: {props.ticket.tags ? props.ticket.tags[0] : ""}</div>
             <p>{props.ticket.description}</p>
           </Modal.Description>
           {props.isAdmin ? <AdminView ticket={props.ticket} /> : null}
