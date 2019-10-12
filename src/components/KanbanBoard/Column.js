@@ -5,10 +5,13 @@ import KanbanTicket from "./KanbanTicket";
 export default function Column(props) {
   console.log("Column: ", props);
   return (
+    <div>
+        <h4>{props.title}</h4>
     <div className="KanbanColumn">
-      <h4>{props.title}</h4>
       {renderTickets(props.tickets)}
     </div>
+    </div>
+
   );
 }
 

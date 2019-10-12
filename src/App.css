@@ -7,6 +7,10 @@
   flex-direction: column;
 }
 
+.ticket .Title {
+    font: Bold 88px/36px Lato;
+}
+
 h4 {
   color: #black;
   text-align: center;

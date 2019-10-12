@@ -10,11 +10,20 @@ function KanbanTicket(props) {
   console.log("KanbanTicket: ", props);
 
   return (
+
+    <div
+    style={{
+    boxShadow: "0px 14px 20px #00000029",
+  }}>
     <div
       style={{
         background: "#FFFFFF 0% 0% no-repeat padding-box",
-        boxShadow: "0px 14px 20px #00000029",
-        marginTop: "30px"
+
+        marginTop: "30px",
+        paddingTop: "10px",
+        paddingLeft: "10px",
+        paddingRight:"10px",
+
       }}
     >
       <div>
@@ -28,8 +37,8 @@ function KanbanTicket(props) {
         Vote
       </Button>
       <div>{props.ticket.description || "Ei kuvausta"}</div>
-
-      <Modal trigger={<Button>Tarkastele aloitetta</Button>}>
+</div>
+      <Modal trigger={<Button fluid color='orange'>Tarkastele aloitetta</Button>}>
         <Modal.Header>
           {props.ticket.title}{" "}
           <span style={{ position: "relative", left: "40%" }}>
