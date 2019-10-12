@@ -7,3 +7,10 @@ export const setView = view => {
     payload: { view }
   };
 };
+
+export const switchTag = tag => {
+  return {
+    type: actionTypes.SWITCH_TAG,
+    payload: { tag }
+  };
+};
