@@ -73,8 +73,6 @@
 .SearchTool {
   margin-left: 10vw;
   width: 30vw;
-  display: flex;
-  flex-direction: row;
 }
 
 .description-of-the-project {
@@ -83,7 +81,6 @@
 }
 
 .SearchTool .tag-search {
-  margin-left: 40px;
 }
 .otsikkokuva {
   margin-top: 1vw;
