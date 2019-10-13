@@ -8,5 +8,7 @@ export const EDIT_TICKET = "EDIT_TICKET";
 export const TOGGLE_VOTE = "TOGGLE_VOTE";
 export const ASSIGN_TICKET = "ASSIGN_TICKET";
 
+export const COMMENT = "COMMENT";
+
 // widget related
 export const ADD_WIDGET = "ADD_WIDGET";

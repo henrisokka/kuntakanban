@@ -25,3 +25,10 @@ export const toggleVote = (ticketId, userId) => {
     payload: { ticketId, userId }
   };
 };
+
+export const comment = (ticketId, userId, text) => {
+  return {
+    type: actionTypes.COMMENT,
+    payload: { ticketId, userId, text }
+  };
+};

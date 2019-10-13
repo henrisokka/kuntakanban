@@ -60,6 +60,7 @@ export default function TicketCreator(props) {
               return;
             }
             setCount(ticketCount + 1);
+            console.log(tags);
             props.createTicket(
               newTicket(
                 "id" + ticketCount,
@@ -90,6 +91,7 @@ function newTicket(id, title, description, owner, tags) {
     owner: null,
     column: 0,
     voters: [],
+    comments: [],
     tags
   };
 }

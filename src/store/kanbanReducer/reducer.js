@@ -8,13 +8,14 @@ const initialState = {
       description: "Voitaisko tehdä näin joskus pliis",
       owner: null,
       subscribers: ["email@foo.boo", "2email@fo.fo"],
-      column: 0,
+      column: 3,
       voters: ["sum1"],
       tags: [],
-      widgets: [
+      comments: [
         {
-          type: "comment",
-          content: "Hyvä ajatus, voisi toteuttaa mutta ei kuulu omaan alaani."
+          user: "Risto Kuosmanen",
+          comment:
+            "Tämä ei nyt oikein toimi. Syö budjettia liikaa ja sitä rataa."
         }
       ]
     },
@@ -22,12 +23,12 @@ const initialState = {
       id: "1",
       title: "Huono avaus",
       description: "Mutta se on nyt vastaanotettu eikö",
-      owner: "sumUserId8",
+      owner: "Risto Kuosmanen",
       subscribers: ["email@foo.boo", "2email@fo.fo"],
       column: 1,
       voters: ["sum1"],
       tags: ["sote"],
-      widgets: [{}]
+      comments: []
     },
     {
       id: "2",
@@ -35,10 +36,15 @@ const initialState = {
       description: "Ois hyvä juttu mun mielestä kiitos",
       owner: null,
       subscribers: ["email@foo.boo", "2email@fo.fo"],
-      column: 0,
+      column: 1,
       voters: ["sum1", "sum2"],
       tags: [],
-      widgets: [{}]
+      comments: [
+        {
+          user: "Risto Kuosmanen",
+          comment: "Oikein hyvä idea. Tekee kulkemisesta turvallisempaa."
+        }
+      ]
     }
   ],
   tags: ["sote", "kadut", "digitalisaatio"]
@@ -77,13 +83,10 @@ const newTicket = (state, action) => {
   const tags = state.tags.slice();
 
   for (let tag of ticket.tags) {
-    console.log("tag: ", tag);
     if (!tags.includes(tag)) {
       tags.push(tag);
     }
   }
-
-  console.log("tags: ", tags);
 
   return { ...state, tickets, tags };
 };
@@ -98,6 +101,20 @@ const assignTicket = (state, action) => {
     ticket.owner = userId;
     tickets[ticketIndex] = ticket;
   }
+  return {
+    ...state,
+    tickets
+  };
+};
+
+const comment = (state, action) => {
+  const { ticketId, userId, text } = action.payload;
+  const tickets = state.tickets.slice();
+  const index = tickets.findIndex(t => t.id === ticketId);
+  const ticket = Object.assign({}, tickets[index]);
+  ticket.comments.push({ user: userId, comment: text });
+  tickets[index] = ticket;
+
   return {
     ...state,
     tickets
@@ -120,6 +137,8 @@ const reducer = (state = initialState, action) => {
       return newTicket(state, action);
     case actionTypes.ASSIGN_TICKET:
       return assignTicket(state, action);
+    case actionTypes.COMMENT:
+      return comment(state, action);
     default:
       return state;
   }
