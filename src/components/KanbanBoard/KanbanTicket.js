@@ -44,7 +44,7 @@ function KanbanTicket(props) {
 </div>
       <Modal trigger={<Button fluid color='orange'>Tarkastele aloitetta</Button>}>
         <Modal.Header>
-          {props.ticket.title}{" "}
+          <h2 className="modaaliotsikko">{props.ticket.title}{" "}</h2>
           <span style={{ position: "relative", left: "40%" }}>
             {props.isAdmin && props.userId !== props.ticket.owner ? (
               <Button
