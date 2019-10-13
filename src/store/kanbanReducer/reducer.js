@@ -4,18 +4,18 @@ const initialState = {
   tickets: [
     {
       id: "0",
-      title: "Hyvä avaus",
-      description: "Voitaisko tehdä näin joskus pliis",
+      title: "Kevyenliikenteen väylä Maja-kioskille",
+      description:
+        "Maja-kioskin viereinen koulupolku on jalkankulkijoille ja pyöräilijöille todellinen vaaranpaikka. Kyseiselle tielle tulisi rakentaa kävely-/pyörätie. Nykyisin jalankulkijat kulkevat käytännössä Majan parkkipaikan läpi ja pienimmät kulkijat ovat suuressa vaarassa jäädä auton alle. Koko Koulupolku toimii parkkialueena Pihvimajan asiakkaille ja autot ovat yleensä isoja, kuorma-autoja yms. ja näiden seassa jalankulkijoiden on kuljettava. Ehdotan tielle kevyenliikenteenväylän rakentamista. Samalla oja-alueen siistimistä viihtyisämmäksi ja roska-astioita tien varrelle. Nykyisin oja pientareineen toimii kaatopaikkana.",
       owner: null,
       subscribers: ["email@foo.boo", "2email@fo.fo"],
-      column: 3,
-      voters: ["sum1"],
-      tags: [],
+      column: 1,
+      voters: ["sum1", "sum2", "sum3"],
+      tags: ["kadut", "turvallisuus"],
       comments: [
         {
           user: "Risto Kuosmanen",
-          comment:
-            "Tämä ei nyt oikein toimi. Syö budjettia liikaa ja sitä rataa."
+          comment: "Hyvät perustelut. Otetaan asia käsittelyyn."
         }
       ]
     },
@@ -25,7 +25,7 @@ const initialState = {
       description: "Mutta se on nyt vastaanotettu eikö",
       owner: "Risto Kuosmanen",
       subscribers: ["email@foo.boo", "2email@fo.fo"],
-      column: 1,
+      column: 0,
       voters: ["sum1"],
       tags: ["sote"],
       comments: []
@@ -47,7 +47,7 @@ const initialState = {
       ]
     }
   ],
-  tags: ["sote", "kadut", "digitalisaatio"]
+  tags: ["sote", "kadut", "digitalisaatio", "turvallisuus"]
 };
 
 const toggleVote = (state, action) => {
@@ -129,6 +129,21 @@ const edit = (state, action) => {
   return { ...state, tickets };
 };
 
+const moveToNextColumn = (state, action) => {
+  const { ticketId } = action.payload;
+  const tickets = state.tickets.slice();
+  const index = tickets.findIndex(t => t.id === ticketId);
+
+  const ticket = Object.assign({}, tickets[index]);
+  ticket.column += 1;
+  tickets[index] = ticket;
+
+  return {
+    ...state,
+    tickets
+  };
+};
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.TOGGLE_VOTE:
@@ -139,6 +154,8 @@ const reducer = (state = initialState, action) => {
       return assignTicket(state, action);
     case actionTypes.COMMENT:
       return comment(state, action);
+    case actionTypes.MOVE_TO_NEXT_COLUMN:
+      return moveToNextColumn(state, action);
     default:
       return state;
   }

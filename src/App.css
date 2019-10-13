@@ -9,23 +9,33 @@
 
 .aanilaskuritiketissa {
   text-align: right;
-  padding-right: 20px;
+  padding-right: 10px;
   padding-top: 9px;
-  float:right;
+  float: right;
 }
 
 .ticket .Title {
-    font: Bold 88px/36px Lato;
+  font: Bold 88px/36px Lato;
 }
 
 .kanbanotsikot {
   text-align: center;
 }
 
+.tiketinotsikko {
+  height: 40px;
+}
+
 .otsikkodivi {
-text-align: center;
-display: flex;
-align-items: center;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+.vote-stuff-etc-etc {
+  position: absolute;
+  right: 0;
+  width: 80px;
 }
 
 .App .Title {
@@ -48,13 +58,31 @@ align-items: center;
 .CreateButton {
   background: #ffad00 0% 0% no-repeat padding-box;
   border-radius: 4px;
-  height: 5vh;
+  width: 153px;
+  height: 113px;
   margin-left: 10vw;
+
+  text-align: left;
+  font: Bold 20px Lato;
+  letter-spacing: 0;
+  color: #ffffff;
+  opacity: 1;
 }
 
 .SearchTool {
   margin-left: 10vw;
-  width: 50vw;
+  width: 30vw;
+  display: flex;
+  flex-direction: row;
+}
+
+.description-of-the-project {
+  margin-left: 10vw;
+  width: 30vw;
+}
+
+.SearchTool .tag-search {
+  margin-left: 40px;
 }
 
 .InfoButton {
@@ -70,7 +98,6 @@ align-items: center;
 }
 
 .KanbanColumn {
-  width: 340px;
   height: 60vh;
   background: #f2f2f2 0% 0% no-repeat padding-box;
   border-radius: 21px;
@@ -90,15 +117,12 @@ align-items: center;
   margin-top: 20px;
 }
 
-.tag-container {
-  margin-top: 20px;
-}
-
-.tag-container .tag {
+.tag-search .tag {
   margin-right: 10px;
   background-color: white;
   border: solid;
   border-width: 1px;
   padding: 10px;
   border-radius: 5%;
+  cursor: pointer;
 }
