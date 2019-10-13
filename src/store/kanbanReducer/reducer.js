@@ -10,7 +10,18 @@ const initialState = {
       owner: null,
       subscribers: ["email@foo.boo", "2email@fo.fo"],
       column: 1,
-      voters: ["sum1", "sum2", "sum3"],
+      voters: [
+        "sum1",
+        "sum2",
+        "sum3",
+        "sum1",
+        "sum1",
+        "sum1",
+        "sum1",
+        "sum1",
+        "sum1",
+        "sum1"
+      ],
       tags: ["infra", "turvallisuus"],
       comments: [
         {
@@ -27,7 +38,28 @@ const initialState = {
       owner: "Jaana Janatuinen",
       subscribers: ["email@foo.boo", "2email@fo.fo"],
       column: 3,
-      voters: ["sum1"],
+      voters: [
+        "sum1",
+        "sum1",
+        "sum1",
+        "sum1",
+        "sum1",
+        "sum1",
+        "sum1",
+        "sum1",
+        "sum1",
+        "sum1",
+        "sum1",
+        "sum1",
+        "sum1",
+        "sum1",
+        "sum1",
+        "sum1",
+        "sum1",
+        "sum1",
+        "sum1",
+        "sum1"
+      ],
       tags: ["sote"],
       comments: [
         {
@@ -48,7 +80,7 @@ const initialState = {
       owner: null,
       subscribers: ["email@foo.boo", "2email@fo.fo"],
       column: 1,
-      voters: ["sum1", "sum2"],
+      voters: ["sum1", "sum2", "sum1", "sum1", "sum1"],
       tags: ["infra", "turvallisuus"],
       comments: [
         {
