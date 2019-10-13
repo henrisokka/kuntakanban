@@ -6,13 +6,10 @@ import KanbanBoard from "./components/KanbanBoard/KanbanBoard";
 import SearchTool from "./components/SearchTool";
 import TicketCreator from "./containers/TicketCreator";
 import { newTicket } from "./store/kanbanReducer/actions";
-import logo from './assets/logo.png'; // with import
-import nappi from './assets/teeuusialoite.png';
-
-
+import logo from "./assets/logo.png"; // with import
+import nappi from "./assets/teeuusialoite.png";
 
 import "./App.css";
-
 
 function App(props) {
   const [showModal, setModal] = useState(false);
@@ -22,21 +19,16 @@ function App(props) {
 
   return (
     <div className="App">
-    <div className="otsikkokuva">
-    <img src={logo} />
-
-
-
-
-</div>
+      <div className="otsikkokuva">
+        <img src={logo} />
+      </div>
       <div className="TopBar">
         <div className="CreateButton" onClick={() => setModal(true)}>
-          <img src={nappi} />
+          <img width={"200px"} src={nappi} />
         </div>
         <Modal open={showModal}>
           <TicketCreator
             close={() => setModal(false)}
-            p
             createTicket={props.createTicket}
           />
         </Modal>
@@ -56,7 +48,6 @@ function App(props) {
           selectedTags={props.selectedTags}
           switchTag={props.switchTag}
         />
-        <div className="InfoButton">Info</div>
       </div>
       <KanbanBoard selectedTags={props.selectedTags} />
     </div>

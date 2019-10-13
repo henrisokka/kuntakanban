@@ -33,12 +33,13 @@ const initialState = {
     {
       id: "2",
       title: "Suojatie lukiolle",
-      description: "Ois hyvä juttu mun mielestä kiitos",
+      description:
+        "Haluaisin, että Mäntäslän lukion viereen rakennetaan uusi suojatie vanhan tilalle.",
       owner: null,
       subscribers: ["email@foo.boo", "2email@fo.fo"],
       column: 1,
       voters: ["sum1", "sum2"],
-      tags: [],
+      tags: ["kadut", "turvallisuus"],
       comments: [
         {
           user: "Risto Kuosmanen",

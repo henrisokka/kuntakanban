@@ -72,8 +72,15 @@ function KanbanTicket(props) {
 
         <Modal.Content>
           <Modal.Description>
-            <Header>Kuvaus</Header>
-            <div>Tagit: {props.ticket.tags ? props.ticket.tags[0] : ""}</div>
+            <div style={{ height: "50px" }}>
+              {props.ticket.tags
+                ? props.ticket.tags.map(t => (
+                    <span className="tag" style={{ cursor: "auto" }}>
+                      {t}
+                    </span>
+                  ))
+                : ""}
+            </div>
             <p>{props.ticket.description}</p>
           </Modal.Description>
           <Comment.Group>
