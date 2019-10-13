@@ -7,14 +7,25 @@
   flex-direction: column;
 }
 
+.aanilaskuritiketissa {
+  text-align: right;
+  padding-right: 20px;
+  padding-top: 9px;
+  float:right;
+}
+
 .ticket .Title {
     font: Bold 88px/36px Lato;
 }
 
-h4 {
-  color: #black;
+.kanbanotsikot {
   text-align: center;
-  padding-bottom: 20px;
+}
+
+.otsikkodivi {
+text-align: center;
+display: flex;
+align-items: center;
 }
 
 .App .Title {

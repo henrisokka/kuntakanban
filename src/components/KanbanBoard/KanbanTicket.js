@@ -14,39 +14,43 @@ function KanbanTicket(props) {
     <div
     style={{
     boxShadow: "0px 14px 20px #00000029",
+    marginBottom:"20px",
+    marginTop: "0px",
+
   }}>
     <div
       style={{
         background: "#FFFFFF 0% 0% no-repeat padding-box",
 
-        marginTop: "30px",
         paddingTop: "10px",
         paddingLeft: "10px",
         paddingRight:"10px",
+        paddingBottom:"20px"
 
       }}
     >
       <div>
-        {props.ticket.title || "Ei otsikkoa"}{" "}
-        <div>{props.ticket.voters.length}</div>
-      </div>
-
-      <Button
+      <Button floated='right' circular icon='thumbs up'
         onClick={() => props.toggleVote(props.ticket.id, "testihenkilo1")}
       >
-        Vote
       </Button>
-      <div>{props.ticket.description || "Ei kuvausta"}</div>
+      <div> <h4 className="aanilaskuritiketissa"> {props.ticket.voters.length}</h4> </div>
+        <h4 className="tiketinotsikko">{props.ticket.title || "Ei otsikkoa"}</h4>
+
+      </div>
+
+
+      <div>  {props.ticket.description || "Ei kuvausta"}</div>
 </div>
       <Modal trigger={<Button fluid color='orange'>Tarkastele aloitetta</Button>}>
         <Modal.Header>
           {props.ticket.title}{" "}
           <span style={{ position: "relative", left: "40%" }}>
             {props.ticket.voters.length}
-            <Button
+            <Button  circular icon="thumbs up"
               onClick={() => props.toggleVote(props.ticket.id, "testihenkilo1")}
             >
-              <Icon disabled name="thumbs up"></Icon>
+
             </Button>
           </span>
         </Modal.Header>

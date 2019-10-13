@@ -4,7 +4,7 @@ const initialState = {
   activeView: "front",
   userRole: "admin",
   userId: "kunta_paattaja_89",
-  selectedTags: ["sote"]
+  selectedTags: []
 };
 
 const setView = (state, action) => {
