@@ -4,8 +4,8 @@ import { Input } from "semantic-ui-react";
 export default function SearchTool(props) {
   return (
     <div className="SearchTool">
-      <Input />
-      <div className="tag-container">
+      <div className="tag-search">
+        <h5>Valitse aihealueet</h5>
         {props.tags
           ? props.tags.map(t => (
               <span

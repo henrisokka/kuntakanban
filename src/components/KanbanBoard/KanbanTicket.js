@@ -1,69 +1,73 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Modal, Header, Icon, Comment } from "semantic-ui-react";
-import { toggleVote, assignTicket } from "../../store/kanbanReducer/actions";
+import {
+  toggleVote,
+  assignTicket,
+  moveToNextColumn
+} from "../../store/kanbanReducer/actions";
 
 import { connect } from "react-redux";
 
 import AdminView from "./AdminView";
 
 function KanbanTicket(props) {
-  console.log("KanbanTicket: ", props);
+  const [open, setOpen] = useState(false);
 
   return (
-
-    <div
-    style={{
-    boxShadow: "0px 14px 20px #00000029",
-    marginBottom:"20px",
-    marginTop: "0px",
-
-  }}>
     <div
       style={{
-        background: "#FFFFFF 0% 0% no-repeat padding-box",
-
-        paddingTop: "10px",
-        paddingLeft: "10px",
-        paddingRight:"10px",
-        paddingBottom:"20px"
-
+        boxShadow: "0px 14px 20px #00000029",
+        marginBottom: "20px",
+        marginTop: "0px"
       }}
     >
-      <div>
-      <Button floated='right' circular icon='thumbs up'
-        onClick={() => props.toggleVote(props.ticket.id, "testihenkilo1")}
+      <div
+        style={{
+          background: "#FFFFFF 0% 0% no-repeat padding-box",
+
+          paddingTop: "10px",
+          paddingLeft: "10px",
+          paddingRight: "10px",
+          paddingBottom: "20px"
+        }}
       >
-      </Button>
-      <div> <h4 className="aanilaskuritiketissa"> {props.ticket.voters.length}</h4> </div>
-        <h4 className="tiketinotsikko">{props.ticket.title || "Ei otsikkoa"}</h4>
-
+        <div>
+          <Button
+            floated="right"
+            circular
+            icon="thumbs up"
+            onClick={() => props.toggleVote(props.ticket.id, "testihenkilo1")}
+          ></Button>
+          <div>
+            <h4 className="aanilaskuritiketissa">
+              {props.ticket.voters.length}
+            </h4>
+          </div>
+          <h4 className="tiketinotsikko">
+            {props.ticket.title || "Ei otsikkoa"}
+          </h4>
+        </div>
       </div>
-
-
-      <div>  {props.ticket.description || "Ei kuvausta"}</div>
-</div>
-      <Modal trigger={<Button fluid color='orange'>Tarkastele aloitetta</Button>}>
+      <Button fluid color="orange" onClick={() => setOpen(true)}>
+        Tarkastele aloitetta
+      </Button>
+      <Modal open={open} closeIcon onClose={() => setOpen(false)}>
         <Modal.Header>
-          <h2 className="modaaliotsikko">{props.ticket.title}{" "}</h2>
-          <span style={{ position: "relative", left: "40%" }}>
-            {props.isAdmin && props.userId !== props.ticket.owner ? (
-              <Button
-                onClick={() =>
-                  props.assignTicket(props.ticket.id, props.userId)
-                }
-              >
-                Ota vastuulle
-              </Button>
-            ) : (
-              ""
-            )}
-            {props.ticket.voters.length}
-            <Button  circular icon="thumbs up"
-              onClick={() => props.toggleVote(props.ticket.id, "testihenkilo1")}
-            >
-
-            </Button>
-          </span>
+          <div style={{ display: "flex", flexDirection: "row" }}>
+            {props.ticket.title}{" "}
+            <span>
+              <div className="vote-stuff-etc-etc">
+                {props.ticket.voters.length}
+                <Button
+                  circular
+                  icon="thumbs up"
+                  onClick={() =>
+                    props.toggleVote(props.ticket.id, "testihenkilo1")
+                  }
+                ></Button>
+              </div>
+            </span>
+          </div>
         </Modal.Header>
 
         <Modal.Content>
@@ -89,10 +93,41 @@ function KanbanTicket(props) {
               </Comment>
             ))}
           </Comment.Group>
-
           {props.isAdmin ? <AdminView ticket={props.ticket} /> : null}
-
-          <div>Prosessin omistaja: {props.ticket.owner || "Ei omistajaa"}</div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              marginBottom: "20px"
+            }}
+          >
+            <div>
+              Prosessin omistaja: {props.ticket.owner || "Ei omistajaa"}
+            </div>
+            {props.isAdmin && props.userId !== props.ticket.owner ? (
+              <div style={{ position: "absolute", right: 0 }}>
+                <Button
+                  onClick={() =>
+                    props.assignTicket(props.ticket.id, props.userId)
+                  }
+                  color="orange"
+                >
+                  Ota vastuulle
+                </Button>
+              </div>
+            ) : (
+              <div style={{ position: "absolute", right: 0 }}>
+                <Button
+                  onClick={() => {
+                    props.moveToNextColumn(props.ticket.id);
+                    setOpen(false);
+                  }}
+                >
+                  Siirrä seuraavaan vaiheeseen
+                </Button>
+              </div>
+            )}
+          </div>
         </Modal.Content>
       </Modal>
     </div>
@@ -109,7 +144,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     toggleVote: (ticketId, userId) => dispatch(toggleVote(ticketId, userId)),
-    assignTicket: (ticketId, userId) => dispatch(assignTicket(ticketId, userId))
+    assignTicket: (ticketId, userId) =>
+      dispatch(assignTicket(ticketId, userId)),
+    moveToNextColumn: ticketId => dispatch(moveToNextColumn(ticketId))
   };
 };
 

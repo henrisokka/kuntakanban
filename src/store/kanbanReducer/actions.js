@@ -32,3 +32,10 @@ export const comment = (ticketId, userId, text) => {
     payload: { ticketId, userId, text }
   };
 };
+
+export const moveToNextColumn = ticketId => {
+  return {
+    type: actionTypes.MOVE_TO_NEXT_COLUMN,
+    payload: { ticketId }
+  };
+};

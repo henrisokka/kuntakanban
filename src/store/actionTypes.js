@@ -9,6 +9,7 @@ export const TOGGLE_VOTE = "TOGGLE_VOTE";
 export const ASSIGN_TICKET = "ASSIGN_TICKET";
 
 export const COMMENT = "COMMENT";
+export const MOVE_TO_NEXT_COLUMN = "MOVE_TO_NEXT_COLUMN";
 
 // widget related
 export const ADD_WIDGET = "ADD_WIDGET";

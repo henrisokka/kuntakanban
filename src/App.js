@@ -36,9 +36,20 @@ function App(props) {
         <Modal open={showModal}>
           <TicketCreator
             close={() => setModal(false)}
+            p
             createTicket={props.createTicket}
           />
         </Modal>
+        <div className="description-of-the-project">
+          <h5>Lyhyesti</h5>
+          <p>
+            Meidän Mäntsälä on kaikkien kuntalaisten palvelu yhteisen
+            vaikuttamisen välineeksi. Palvelussa voit tarkastella tehtyjä
+            aloitteita, kommentoida niitä sekä luoda uuden oman aloitteesi.
+            Kunta vastaa kaikkiin aloitteisiin ja kehityskelpoisimmat muuttuvat
+            teoiksi.
+          </p>
+        </div>
 
         <SearchTool
           tags={props.tags}
