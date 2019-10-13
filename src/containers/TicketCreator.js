@@ -49,9 +49,13 @@ export default function TicketCreator(props) {
           Lisää
         </Button>
       </Form>
-      {tags.map(t => (
-        <span style={{ marginLeft: "5px" }}>{t}</span>
-      ))}
+      <div style={{ marginTop: "20px" }}>
+        {tags.map(t => (
+          <span className="tag" style={{ marginLeft: "5px" }}>
+            {t}
+          </span>
+        ))}
+      </div>
       <div className="Input-Container">
         <Button
           primary

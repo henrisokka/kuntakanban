@@ -11,7 +11,7 @@ const initialState = {
       subscribers: ["email@foo.boo", "2email@fo.fo"],
       column: 1,
       voters: ["sum1", "sum2", "sum3"],
-      tags: ["kadut", "turvallisuus"],
+      tags: ["infra", "turvallisuus"],
       comments: [
         {
           user: "Risto Kuosmanen",
@@ -21,14 +21,24 @@ const initialState = {
     },
     {
       id: "1",
-      title: "Huono avaus",
-      description: "Mutta se on nyt vastaanotettu eikö",
-      owner: "Risto Kuosmanen",
+      title: "Lisää iltaneuvolaa.",
+      description:
+        "Olen YH-isä joka on päivätöissä enkä ehdi koskaan neuvolaan. Olisiko mahdollista saada iltapäivystystä neuvoloihin edes yhtenä päivänä viikossa.",
+      owner: "Jaana Janatuinen",
       subscribers: ["email@foo.boo", "2email@fo.fo"],
-      column: 0,
+      column: 3,
       voters: ["sum1"],
       tags: ["sote"],
-      comments: []
+      comments: [
+        {
+          user: "Jaana Janatuinen",
+          comment: "Kuulostaa järkevältä. Alamme valmistella asiaa."
+        },
+        {
+          user: "Jaana Janatuinen",
+          comment: "Iltapäivistysys lisätty torstaille kaikkiin neuvoloihin."
+        }
+      ]
     },
     {
       id: "2",
@@ -39,16 +49,27 @@ const initialState = {
       subscribers: ["email@foo.boo", "2email@fo.fo"],
       column: 1,
       voters: ["sum1", "sum2"],
-      tags: ["kadut", "turvallisuus"],
+      tags: ["infra", "turvallisuus"],
       comments: [
         {
           user: "Risto Kuosmanen",
           comment: "Oikein hyvä idea. Tekee kulkemisesta turvallisempaa."
         }
       ]
+    },
+    {
+      id: "3",
+      title: "Lisää talkoita",
+      description: "Haluaisin että kunnassa olisi talkoita kuin ennen vanhaa.",
+      owner: null,
+      subscribers: ["email@foo.boo", "2email@fo.fo"],
+      column: 0,
+      voters: ["sum1", "sum2"],
+      tags: [],
+      comments: []
     }
   ],
-  tags: ["sote", "kadut", "digitalisaatio", "turvallisuus"]
+  tags: ["sote", "infra", "turvallisuus"]
 };
 
 const toggleVote = (state, action) => {
